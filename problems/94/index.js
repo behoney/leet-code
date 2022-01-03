@@ -24,13 +24,7 @@ var inorderTraversal = function (root) {
     return;
   };
 
-
   inorder(root, dfs);
 
   return dfs;
 };
-
-
-consolePrint(
-  "hi"
-)

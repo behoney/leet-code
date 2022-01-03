@@ -1,3 +1,3 @@
-# node-kbz1d3
+# leetcode practice repo
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/node-kbz1d3)
+this is personal repo that archieving leetcode solution.

@@ -1,3 +1,3 @@
 # leetcode practice repo
 
-this is personal repo that archieving leetcode solution.
+this is a personal repo to archive leetcode solution.

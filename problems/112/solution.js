@@ -12,22 +12,29 @@
  * @return {boolean}
  */
 
- const isLeaf = (node) => {
+TreeNode.prototype.isLeaf = function () {
+  return !this.left && !this.right;
+  // return isLeaf(this);
+};
+
+const isLeaf = (node) => {
   console.log("leaf", node.val, node.left, node.right);
   return !node.left && !node.right;
 };
 
 var hasPathSum = function (root, targetSum) {
   if (!root) return false;
-  if(isLeaf(root)) {
-    console.log("root is leaf")
+  if (isLeaf(root)) {
+  // if (root.isLeaf()) {
+    console.log("root is leaf");
     return root.val == targetSum;
   }
 
   const getPathSum = (node, sum = 0) => {
     if (!node) return false;
     console.log("getPathSum", node, sum);
-    if(isLeaf(node)) return targetSum == node.val + sum ? true : false;
+    if (isLeaf(root)) return targetSum == node.val + sum ? true : false;
+    // if (node.isLeaf()) return targetSum == node.val + sum ? true : false;
     return (
       getPathSum(node.left, sum + node.val) ||
       getPathSum(node.right, sum + node.val)

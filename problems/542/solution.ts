@@ -1,44 +1,43 @@
 function updateMatrix(mat: number[][]): number[][] {
-  const y_max = mat.length;
-  const x_max = mat[0].length;
+  const maxR = mat.length;
+  const maxC = mat[0].length;
+
+  const path = [];
+
+  let max = Infinity;
+  const getDistance = (r, c, distance = 0) => {
+    if (mat[r][c] == 0) {
+      return distance;
+    }
+    // console.log(r, c, path);
+    path.push([r, c]);
+    if (r + 1 < maxR && !path.some((e) => e[0] == r + 1 && e[1] == c))
+      max = Math.min(max, getDistance(r + 1, c, distance + 1));
+    path.length = distance;
+
+    if (c + 1 < maxC && !path.some((e) => e[0] == r && e[1] == c + 1))
+      max = Math.min(max, getDistance(r, c + 1, distance + 1));
+    path.length = distance;
+    if (r - 1 >= 0 && !path.some((e) => e[0] == r - 1 && e[1] == c))
+      max = Math.min(max, getDistance(r - 1, c, distance + 1));
+    path.length = distance;
+
+    if (c - 1 >= 0 && !path.some((e) => e[0] == r && e[1] == c - 1))
+      max = Math.min(max, getDistance(r, c - 1, distance + 1));
+
+    return max;
+  };
 
   const result = [];
+  for (let i = 0; i < maxR; i++) {
+    const row = [];
+    for (let j = 0; j < maxC; j++) {
+      max = Infinity;
 
-  for (let i = 0; i < y_max; i++) {
-    result.push([]);
-    for (let j = 0; j < x_max; j++) {
-      result[i].push(Infinity);
+      path.length = 0;
+      row.push(getDistance(i, j));
     }
-  }
-  // console.log("result", result);
-
-  for (let i = 0; i < y_max; i++) {
-    for (let j = 0; j < x_max; j++) {
-      if (mat[i][j] == 0) result[i][j] = 0;
-      // console.log("for result", result);
-    }
-  }
-
-  let distance = 1;
-  while (!result.flat().every((e) => e != Infinity)) {
-    for (let i = 0; i < y_max; i++) {
-      for (let j = 0; j < x_max; j++) {
-        // if (result[i][j] != Infinity && mat[i][j] == 1) {
-        if (result[i][j] == distance - 1) {
-          if (i + 1 < y_max)
-            result[i + 1][j] = Math.min(result[i + 1][j], distance);
-          if (i - 1 >= 0)
-            result[i - 1][j] = Math.min(result[i - 1][j], distance);
-          if (j + 1 < x_max)
-            result[i][j + 1] = Math.min(result[i][j + 1], distance);
-          if (j - 1 >= 0)
-            result[i][j - 1] = Math.min(result[i][j - 1], distance);
-
-          // console.log(distance, i, j, result);
-        }
-      }
-    }
-    distance++;
+    result.push(row);
   }
 
   return result;

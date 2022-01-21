@@ -1,4 +1,7 @@
 function reverseBits(n: number): number {
-  console.log(Math.pow(2,32),n)
-  return parseInt(n.toString(2).split("").reverse().join(""), 2);
+  let str = n.toString(2);
+  while (str.length < 32) {
+    str = "0" + str;
+  }
+  return parseInt(str.split("").reverse().join(""), 2);
 }

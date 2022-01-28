@@ -13,18 +13,26 @@
 function deleteDuplicates(head: ListNode | null): ListNode | null {
   const visited = [];
   const duplicated = [];
-  while (head) {
-    if (visited.indexOf(head.val) == -1) {
-      visited.push(head.val);
-    } else duplicated.push(head.val);
-    head = head.next;
+  let ptr = head;
+
+  while (ptr) {
+    if (visited.indexOf(ptr.val) == -1) {
+      visited.push(ptr.val);
+    } else duplicated.push(ptr.val);
+    ptr = ptr.next;
   }
 
-  const result = visited.filter((e) => duplicated.indexOf(e) == -1);
-  let node = new ListNode(result.pop(), null);
+  const result = [];
+  for (const e of visited) {
+    if (duplicated.indexOf(e) == -1) result.push(e);
+  }
 
-  while (result) {
-    node = new ListNode(result.pop(), node);
+  let node = null;
+
+  while (result.length) {
+    const val = result.pop();
+
+    node = new ListNode(val, node);
   }
 
   return node;

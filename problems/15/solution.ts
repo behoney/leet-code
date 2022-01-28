@@ -1,6 +1,8 @@
 function threeSum(nums: number[]): number[][] {
   if (nums.length < 3) return [];
 
+  
+
   const result = [];
 
   for (let i = 0; i < nums.length; i++) {

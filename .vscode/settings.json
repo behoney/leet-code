@@ -429,4 +429,6 @@
    * Controls fading out of unused variables.
    */
   // "editor.showUnused": true
+
+  "terminal.external.osxExec": "iTerm.app"
 }

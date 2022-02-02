@@ -1,6 +1,6 @@
 # leetcode practice repo
 
-this is a personal repo to archive leetcode solution.
+Personal repo that saves leetcode solution.
 
 
 

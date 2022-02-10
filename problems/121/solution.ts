@@ -1,5 +1,5 @@
 function maxProfit(prices: number[]): number {
-  if (prices.length == 1) return prices[0];
+  if (prices.length == 1) return 0;
   let cur = -1,
     prev = -1,
     max = -Infinity,

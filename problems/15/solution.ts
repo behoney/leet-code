@@ -1,48 +1,34 @@
 function threeSum(nums: number[]): number[][] {
-  const numbers = [...nums].sort((a, b) => a - b);
-  const indexedResults = [];
+  if (nums.length < 3) return [];
 
-  if (numbers.length < 3) return indexedResults;
-
-  for (let i = 0; i < numbers.length; i++) {
-    for (let j = i + 1; j < numbers.length; j++) {
-      const target = numbers[i] + numbers[j];
-      const test = [...numbers].map((e) => e + target);
-      for (let k = j + 1; k < test.length; k++) {
-        if (test[k] == 0 && k != i && k != j) {
-          const sortedArr = [i, j, k];
-          sortedArr.sort((a, b) => a - b);
-          indexedResults.push(sortedArr);
-        }
+  nums.sort((a, b) => a - b)
+  const result = new Set<string>();
+  const obj = {
+  }
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (obj[-(nums[i] + nums[j])] == undefined)
+        obj[-(nums[i] + nums[j])] = [[i, j]]
+      else {
+        obj[-(nums[i] + nums[j])].push([i, j])
       }
     }
   }
+  // console.log(obj);
 
-  const result = [...new Set(indexedResults.map((e) => e.join()))]
-    .map((e) => e.split(","))
-    .map((e) => {
-      const arr = [];
-      for (const v of e) {
-        arr.push(numbers[v]);
-      }
-      return arr;
-    });
+  for (let i = 0; i < nums.length; i++) {
+    if (obj[nums[i]] != undefined) {
+      obj[nums[i]].map(e => {
+        if (!e.includes(i)) {
 
-  const removeDup = (arr: number[][]) => {
-    const test = [...arr].map((e) => e.sort()).map((e) => e.join());
-    const trav = [];
-    const IndexNeedToRemove = [];
+          // console.log([...e, i]);
 
-    for (let i = 0; i < test.length; i++) {
-      if (trav.indexOf(test[i]) == -1) trav.push(test[i]);
-      else IndexNeedToRemove.push(i);
+          result.add(JSON.stringify([...e.map(v => nums[v]), nums[i]].sort()))
+        }
+      })
     }
-    while (IndexNeedToRemove.length > 0) {
-      arr[IndexNeedToRemove.pop()] = [];
-    }
-  };
+  }
 
-  removeDup(result);
 
-  return result.filter((e) => e.length == 3);
+  return [...result].map(e => JSON.parse(e));
 }

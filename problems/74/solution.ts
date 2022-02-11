@@ -1,10 +1,11 @@
 function searchMatrix(matrix: number[][], target: number): boolean {
-  return matrix.flat().indexOf(target) != -1;
+  for (let i = 0; i < matrix.length; i++) {
 
-  const targetRow = matrix.filter((e: number[]) => {
-    return e[0] <= target && e[e.length - 1] >= target;
-  });
-  if (targetRow.length != 1) console.error("wrong input; ");
-
-  return targetRow[0]?.indexOf(target) != -1;
+    if (matrix[i][0] == target) return true;
+    else if (matrix[i][0] > target) {
+      return matrix[i == 0 ? 0 : i - 1].indexOf(target) != -1;
+    }
+    else if (i == matrix.length - 1)
+      return matrix[i].indexOf(target) != -1;
+  }
 }

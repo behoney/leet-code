@@ -1,0 +1,14 @@
+
+- 쓰레드?  / 프로세스
+- 멀티쓰레드?  / 멀티프로세스
+- css box model | box-sizing
+- html head tag가 뭐가 다른가
+- 쿠키 ; webstroage
+- async&await / promise
+- UX 뭔 얘기야. 예시좀
+    - css 하드웨어가속
+- 커뮤니케이션 뭔얘기야 예시좀
+- hash 예시가 있나
+    - hash 함수 역할이 뭔가
+- 정렬알고리즘
+    - 시간복잡도

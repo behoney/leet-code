@@ -12,37 +12,6 @@
  * }
  */
 
-function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null, q: TreeNode | null): TreeNode | null {
-  if (!root || !p || !q) return null;
-
-  const pPath = [];
-  const qPath = [];
-
-  const search = (node, target, path) => {
-    // console.log("iter", node?.val, target, path);
-
-    if (!node) console.error("wrong input");
-
-    path.push(node.val);
-    if (node.val == target) {
-      return node;
-    }
-
-    if (node.val < target) return search(node.right, target, path);
-    else return search(node.left, target, path);
-
-  }
-
-  search(root, p.val, pPath);
-  // console.log(pPath);
-  search(root, q.val, qPath);
-  // console.log(qPath);
-
-  const result = pPath.filter(e => qPath.includes(e)).reverse()[0];
-  // console.log("result", result, search(root, result, []));
-
-
-
-  return search(root, result, []);
-
+ function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null, q: TreeNode | null): TreeNode | null {
+	
 };

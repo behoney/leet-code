@@ -1,14 +1,9 @@
-function rob(nums: number[]): number {
-  if (nums.length == 1) return nums[0];
-  if (nums.length == 2) return nums[0] > nums[1] ? nums[0] : nums[1];
-
-  let a = 0,
-    b = 0;
-
-  for (let i = 0; i < nums.length; i++) {
-    if (i % 2) a = Math.max(a + nums[i], b);
-    else b = Math.max(b + nums[i], a);
+/**
+ Do not return anything, modify nums in-place instead.
+ */
+function rotate(nums: number[], k: number): void {
+  let i = 0;
+  while (i++ < k) {
+    nums.unshift(nums.pop());
   }
-  
-  return Math.max(a, b);
 }

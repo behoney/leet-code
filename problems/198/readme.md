@@ -1,4 +1,3 @@
-# 189. Rotate Array
+# 198. House Robber
 
-
-https://leetcode.com/problems/rotate-array/
+https://leetcode.com/problems/house-robber/

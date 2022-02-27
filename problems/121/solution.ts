@@ -18,7 +18,7 @@ function maxProfit(prices: number[]): number {
       }
       globalMax = Math.max(globalMax, max);
     } else cur = e;
-    console.log(cur, prev, max, globalMax, min);
+    // console.log(cur, prev, max, globalMax, min);
   }
 
   return globalMax > 0 ? globalMax : 0;

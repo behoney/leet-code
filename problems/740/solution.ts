@@ -1,39 +1,17 @@
 function deleteAndEarn(nums: number[]): number {
-  nums.sort((a, b) => a - b);
-  const dp = {}
+  const MAX_NUMBER = 10001
+  const sums = new Array(MAX_NUMBER).fill(0);
 
-  const getMax = (cur: number[], idx) => {
-    if (cur.length === 0) return 0;
+  let result = 0;
 
-    const target = cur[idx];
-    cur[idx] += 1;          // will be removed by following filter
-
-    const rem
-      = cur.filter(
-        e => { return e == target || e < target - 1 || e > target + 1 }
-      )
-    if (rem.length === 0) return target;
-
-    const key = rem.join('');
-
-    // console.log("target", key, rem);
-    if (dp[key] === undefined) {
-      dp[key] = getMax([...rem], 0);
-
-      for (let i = 1; i < rem.length; i++)
-        dp[key] = Math.max(dp[key], getMax([...rem], i))
-
-      return target + dp[key];
-    }
-
-    else return target + dp[key]
+  for (let i = 0; i < nums.length; i++) {
+    sums[nums[i]] += nums[i];
   }
 
-  let result = -Infinity;
-
-  for (let idx = 0; idx < nums.length; idx++) {
-    result = Math.max(result, getMax([...nums], idx))
+  for (let i = 2; i < MAX_NUMBER; i++) {
+    sums[i] = Math.max(sums[i - 1], sums[i - 2] + sums[i]);
   }
+  
 
-  return result
+  return sums[MAX_NUMBER - 1]
 };

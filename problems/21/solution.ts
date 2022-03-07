@@ -15,17 +15,23 @@ function mergeTwoLists(
   list2: ListNode | null
 ): ListNode | null {
   const arr = [];
-  while (list1) {
-    arr.push(list1.val);
-    list1 = list1.next;
+  while (list1 || list2) {
+    if (list1) {
+      arr.push(list1.val);
+      list1 = list1.next;
+    }
+    if (list2) {
+      arr.push(list2.val);
+      list2 = list2.next;
+    }
   }
-  while (list2) {
-    arr.push(list2.val);
-    list2 = list2.next;
-  }
+
   if (!arr.length) return null;
+
   arr.sort((a, b) => a - b);
+
   let head = new ListNode(arr.pop(), undefined);
+
   while (arr.length) {
     head = new ListNode(arr.pop(), head);
   }

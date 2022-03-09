@@ -1,11 +1,11 @@
 function singleNumber(nums: number[]): number {
-  const t = [];
+  const obj = {};
   while (nums.length) {
     const target = nums.shift();
-    if (t.indexOf(target) != -1) {
-      t.splice(t.indexOf(target), 1);
-    } else t.push(target);
+    if (obj[target] === undefined) {
+      obj[target] = true;
+    } else delete obj[target]
   }
-
-  return t[0];
+  // console.log(obj);
+  return parseInt(Object.keys(obj)[0]);
 }

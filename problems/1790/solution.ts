@@ -1,4 +1,5 @@
 function areAlmostEqual(s1: string, s2: string): boolean {
+  if (s1 === s2) return true;
   if (s1.length !== s2.length) return false;
 
   const s1Indexes = []

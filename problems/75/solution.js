@@ -19,3 +19,6 @@ const helper = (str, divider)=>{
     if(checker.split("").every(char => char === CHECKER_CHARACTER)) return divider
     else return helper(str, divider.slice(0,-1))
 }
+
+
+// NOTE:: failed ( str1: "TAUXXTAUXXTAUXXTAUXXTAUXX", str2: "TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX")

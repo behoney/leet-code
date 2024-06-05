@@ -14,8 +14,8 @@ const CHECKER_CHARACTER = "x"
 const helper = (str, divider)=>{
     if(!divider.length) return null;
     
-    const checker = str.replace(divider, CHECKER_CHARACTER)
+    const checker = str.replaceAll(divider, CHECKER_CHARACTER)
 
-    if(checker.includes(CHECKER_CHARACTER)) return divider
+    if(checker.split("").every(char => char === CHECKER_CHARACTER)) return divider
     else return helper(str, divider.slice(0,-1))
 }

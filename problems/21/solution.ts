@@ -37,3 +37,47 @@ function mergeTwoLists(
   }
   return head;
 }
+
+
+// rep 2 in JS
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} list1
+ * @param {ListNode} list2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function(list1, list2) {
+    const accList = []
+    spreadingHelper(list1, accList)
+    spreadingHelper(list2, accList)
+
+    if(!accList.length) return null
+
+    accList.sort((a,b)=>a-b)
+
+    const head = new ListNode(accList[0], undefined)
+    let prevNode = head
+
+    accList.forEach((val, idx)=>{
+        if(idx === 0) return;
+
+        const curNode = new ListNode(val, undefined)
+        prevNode.next = curNode
+        
+        prevNode = curNode
+    })
+
+    return head;
+};
+
+const spreadingHelper = (listNode, accList = []) => {
+    listNode && accList.push(listNode.val)
+    if(listNode?.next) spreadingHelper(listNode.next, accList)
+}

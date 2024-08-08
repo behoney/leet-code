@@ -1,3 +1,4 @@
+// NOTE:: rep1 in 7min 21sec
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {

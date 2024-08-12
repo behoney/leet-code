@@ -31,4 +31,14 @@ var getMinimumDifference = function(root) {
     }
 
     return Math.min(...result)
+
+    // rep2: variation to minimize time complexity
+    // const diffs = trav.sort((a,b) => a - b).reduce((acc,cur,idx)=>{
+    //     if(idx === 0) return acc
+    //     return acc.concat(trav[idx] - trav[idx-1])
+    // },[])
+    
+    // return Math.min(...diffs)
+
 };
+
